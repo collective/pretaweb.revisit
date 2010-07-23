@@ -1,0 +1,70 @@
+<dl class="portlet portletRereviewPortlet"
+    i18n:domain="pretaweb.rereview">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span>
+           Rereview task list
+        </span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:items tal:repeat="o view/review_items">
+        <dd class="portletItem"
+            tal:define="oddrow repeat/o/odd"
+            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+            	
+	    <table>
+	    	<tbody>
+	    		<tr>
+	    			<td>
+			            <a href="#"
+			               tal:attributes="href string:${o/path}/view;
+			                               title o/description;
+			                               class string:visualIconPadding tile">
+			                <img tal:replace="structure o/icon" />
+			                <span tal:replace="o/title">
+			                    Title
+			                </span>
+				    </a>	    				
+	    			</td>
+
+
+
+	    		</tr>
+                                <td>
+                                    <span tal:replace="o/creator">Jim Smith</span>                                        
+                                </td>                           			
+                        <tr>
+                        	
+                        </tr>
+			
+			<tr>
+                                <td>
+                                    <span tal:replace="o/contributors">Jim Smith, Jane Doe</span>                                        
+                                </td>				
+			</tr>
+
+                                
+                        <tr>
+                                <td>
+                                    <span tal:replace="o/revisit_date"> May 5</span>                                        
+                                </td>                           
+                        </tr>
+			
+	    	</tbody>
+	    </table>
+
+        </dd>
+    </tal:items>
+
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <span>
+           
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

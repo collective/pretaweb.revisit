@@ -1,0 +1,22 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="pretaweb.rereview">
+  <!-- Ensure Plone's portlets ZCML has already been processed; without
+       this, we may get a permission lookup error
+  -->
+  <include package="plone.app.portlets" />
+  <!-- -*- extra stuff goes here -*- -->
+
+  <plone:portlet
+      name="pretaweb.rereview.portlets.RereviewPortlet"
+      interface=".rereviewportlet.IRereviewPortlet"
+      assignment=".rereviewportlet.Assignment"
+      view_permission="zope2.View"
+      edit_permission="cmf.ManagePortal"
+      renderer=".rereviewportlet.Renderer"
+      addview=".rereviewportlet.AddForm"
+      editview=".rereviewportlet.EditForm"
+      />
+
+</configure>

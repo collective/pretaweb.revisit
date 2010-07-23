@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="pretaweb.rereview">
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="pretaweb.rereview"
+      directory="profiles/default"
+      description="Re-review support"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <!-- -*- extra stuff goes here -*- -->
+
+  <include package=".portlets" />
+  
+  <include package="archetypes.schemaextender" />
+  <adapter factory=".schema.RevisitExtender" />
+
+</configure>
