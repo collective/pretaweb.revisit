@@ -14,7 +14,7 @@ from Products.Archetypes import public as atapi
 from Products.Archetypes.interfaces import IBaseContent
 
 from archetypes.schemaextender.field import ExtensionField
-from archetypes.schemaextender.interfaces import ISchemaExtender
+from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender
 
 class ExtensionDateField(ExtensionField, atapi.DateTimeField):
     """ Retrofitted date field """
@@ -22,12 +22,12 @@ class ExtensionDateField(ExtensionField, atapi.DateTimeField):
 
 class RevisitExtender(object):
     adapts(IBaseContent)
-    implements(ISchemaExtender)
+    implements(IOrderableSchemaExtender)
 
 
     fields = [
         ExtensionDateField("revisitDate",
-            schemata="revisit",
+            schemata="dates",
             widget = atapi.CalendarWidget(
                 label="Revisit date",
                 description="When you are alarmed this content should be revisited (one month beforehand this date)",            
@@ -39,6 +39,11 @@ class RevisitExtender(object):
     def __init__(self, context):
         self.context = context
 
+    def getOrder(self, schematas):
+        """ """
+        # Let revisit date to be the last
+        return schematas
+
     def getFields(self):
-        return self.fields    
+        return self.fields
     

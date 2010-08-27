@@ -19,6 +19,9 @@
   <include package=".portlets" />
   
   <include package="archetypes.schemaextender" />
-  <adapter factory=".schema.RevisitExtender" />
+ 
+  <adapter factory="pretaweb.rereview.schema.RevisitExtender"
+           provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
+           name="pretaweb.rereview" />
 
 </configure>
