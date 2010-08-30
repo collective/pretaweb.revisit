@@ -4,7 +4,7 @@
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
         <span>
-           Rereview task list
+           Review Task List
         </span>
         <span class="portletTopRight"></span>
     </dt>
@@ -30,12 +30,11 @@
 	    			</td>
 
 
-
 	    		</tr>
+                        <tr>
                                 <td>
                                     <span tal:replace="o/creator">Jim Smith</span>                                        
                                 </td>                           			
-                        <tr>
                         	
                         </tr>
 			
@@ -44,11 +43,10 @@
                                     <span tal:replace="o/contributors">Jim Smith, Jane Doe</span>                                        
                                 </td>				
 			</tr>
-
                                 
                         <tr>
                                 <td>
-                                    <span tal:replace="o/revisit_date"> May 5</span>                                        
+                                    <span tal:replace="o/mod_date"> May 5</span>                                        
                                 </td>                           
                         </tr>
 			

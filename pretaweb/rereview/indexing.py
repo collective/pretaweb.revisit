@@ -6,7 +6,7 @@
 
 import Missing
 
-def index_revisit(obj, portal):
+def index_revisit(obj, portal, vars=vars, **kwargs):
     """ A silly method for indexing things in a meaningless way
     
     """

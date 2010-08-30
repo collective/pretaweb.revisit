@@ -8,7 +8,7 @@ import datetime
 
 from Products.ATContentTypes.utils import DT2dt, dt2DT
 
-def query_revisit_content(portal, future_delta=datetime.timedelta(days=30)):
+def query_revisit_content(portal, future_delta=datetime.timedelta(days=0)):
     """ Get objects whose revisit date is expiring.
     
     @param portal: Plone portal object
@@ -27,7 +27,10 @@ def query_revisit_content(portal, future_delta=datetime.timedelta(days=30)):
     future = now + future_delta    
     future = dt2DT(future)
                 
-    results = portal.portal_catalog(revisit_date={'query':(past, future),'range': 'min:max'}, show_inactive=True)
+    results = portal.portal_catalog(revisit_date={'query':(past, future),'range': 'min:max'},
+        sort_on='revisit_date',
+        sort_order='reverse',
+        show_inactive=True)
     
     return results
     

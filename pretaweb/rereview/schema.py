@@ -29,8 +29,8 @@ class RevisitExtender(object):
         ExtensionDateField("revisitDate",
             schemata="dates",
             widget = atapi.CalendarWidget(
-                label="Revisit date",
-                description="When you are alarmed this content should be revisited (one month beforehand this date)",            
+                label="Review Date",
+                description="When this date is reached, the content will be visible in the review task list",            
                 show_hm=False,
             ),
         )
