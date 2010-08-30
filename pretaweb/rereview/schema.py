@@ -42,6 +42,13 @@ class RevisitExtender(object):
     def getOrder(self, schematas):
         """ """
         # Let revisit date to be the last
+        # import pdb ; pdb.set_trace()
+        
+        # dates = schematas["dates"]
+        # ['effectiveDate', 'expirationDate', 'creation_date', 'modification_date', 'revisitDate']
+        
+        schematas["dates"] = ['effectiveDate', 'revisitDate', 'expirationDate', 'creation_date', 'modification_date']
+        
         return schematas
 
     def getFields(self):
