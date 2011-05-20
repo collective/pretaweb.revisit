@@ -5,7 +5,10 @@
 """
 
 import Missing
+from plone.indexer.decorator import indexer
+from Products.ATContentTypes.interface import IATContentType
 
+@indexer(IATContentType)
 def index_revisit(obj, portal, vars=vars, **kwargs):
     """ A silly method for indexing things in a meaningless way
     
@@ -18,5 +21,4 @@ def index_revisit(obj, portal, vars=vars, **kwargs):
         
     return Missing.Value 
 
-from Products.CMFPlone.CatalogTool import registerIndexableAttribute
 

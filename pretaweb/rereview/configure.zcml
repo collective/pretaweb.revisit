@@ -24,4 +24,6 @@
            provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
            name="pretaweb.rereview" />
 
+  <adapter name="revisit_date" factory=".indexing.index_revisit" />
+
 </configure>
