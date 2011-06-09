@@ -9,7 +9,7 @@ from plone.indexer.decorator import indexer
 from Products.ATContentTypes.interface import IATContentType
 
 @indexer(IATContentType)
-def index_revisit(obj, portal, vars=vars, **kwargs):
+def index_revisit(obj, portal=None, vars=vars, **kwargs):
     """ A silly method for indexing things in a meaningless way
     
     """
