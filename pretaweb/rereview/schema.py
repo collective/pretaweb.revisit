@@ -5,7 +5,7 @@
 """
 
 
-from zope.component import adapts
+from zope.component import adapts, getUtility
 from zope.interface import implements
 
 from Products.Archetypes.public import BooleanWidget
@@ -16,10 +16,39 @@ from Products.Archetypes.interfaces import IBaseContent
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender, IBrowserLayerAwareExtender
 
-from pretaweb.rereview.interfaces import IAddOnInstalled
+from plone.registry.interfaces import IRegistry
+
+from pretaweb.rereview.interfaces import IAddOnInstalled, IRereviewSettings
+
+
+from datetime import datetime, timedelta
 
 class ExtensionDateField(ExtensionField, atapi.DateTimeField):
     """ Retrofitted date field """
+
+
+class RevisitDefault(object):
+
+    def __init__ (self, context):
+        self.context = context
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface (IRereviewSettings)
+
+        self.defaultRereviewDaysWait = settings.defaultRereviewDaysWait
+        self.defaultApplyToContent = settings.defaultApplyToContent
+        
+
+    def __call__ (self):
+
+        if self.defaultApplyToContent:
+            tInfo = self.context.getTypeInfo()
+            if tInfo.getId() in self.defaultApplyToContent:
+                reReviewDate = datetime.now() + timedelta(days=self.defaultRereviewDaysWait)
+                return reReviewDate.date().isoformat()
+        return None
+
+
+
     
 
 class RevisitExtender(object):
