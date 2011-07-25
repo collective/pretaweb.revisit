@@ -5,6 +5,7 @@
 """
 
 import datetime
+from DateTime import DateTime
 
 from Products.ATContentTypes.utils import DT2dt, dt2DT
 
@@ -19,13 +20,12 @@ def query_revisit_content(portal, future_delta=datetime.timedelta(days=0)):
     @return: LazyMap iterable of content whose revisit expires soon
     """
     
+    past = DateTime (2001, 1, 1)
+
     now = datetime.datetime.now()
-        
-    past = datetime.datetime(2000, 1, 1)
-    past = dt2DT(past)
-    
     future = now + future_delta    
-    future = dt2DT(future)
+    future_tuple = future.timetuple()[:3]
+    future = DateTime(*future_tuple) 
                 
     results = portal.portal_catalog(revisit_date={'query':(past, future),'range': 'min:max'},
         sort_on='revisit_date',
