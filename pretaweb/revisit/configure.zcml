@@ -4,15 +4,15 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="pretaweb.rereview">
+    i18n_domain="pretaweb.revisit">
 
   <five:registerPackage package="." initialize=".initialize" />
 
   <genericsetup:registerProfile
       name="default"
-      title="pretaweb.rereview"
+      title="pretaweb.revisit"
       directory="profiles/default"
-      description="Re-review support"
+      description="Revisit Profile"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   <!-- -*- extra stuff goes here -*- -->
@@ -21,9 +21,9 @@
   
   <include package="archetypes.schemaextender" />
  
-  <adapter factory="pretaweb.rereview.schema.RevisitExtender"
+  <adapter factory="pretaweb.revisit.schema.RevisitExtender"
            provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
-           name="pretaweb.rereview" />
+           name="pretaweb.revisit" />
 
   <adapter
        for="*"
@@ -34,10 +34,19 @@
   <adapter name="revisit_date" factory=".indexing.index_revisit" />
 
     <browser:page 
-        name="rereview-settings"
+        name="revisit-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".browser.RereviewSettingsControlPanel"
+        class=".browser.RevisitSettingsControlPanel"
         permission="cmf.ManagePortal"
         />
+
+  <browser:page
+       name="full_revisit_list"
+       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+       template="full_revisit_list.pt"
+       class=".browser.FullRevisitListView"
+       permission="zope2.ManageProperties"
+       />
+       
 
 </configure>

@@ -1,0 +1,6 @@
+<layers>
+ <layer
+     name="pretaweb.revisit"
+     interface="pretaweb.revisit.interfaces.IAddOnInstalled"
+     />
+</layers>

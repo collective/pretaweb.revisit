@@ -1,6 +1,0 @@
-<layers>
- <layer
-     name="pretaweb.rereview"
-     interface="pretaweb.rereview.interfaces.IAddOnInstalled"
-     />
-</layers>

@@ -6,7 +6,7 @@ try:
 except:
     registerIndexableAttribute = None
 
-rereviewMessageFactory = MessageFactory('pretaweb.rereview')
+revisitMessageFactory = MessageFactory('pretaweb.revisit')
 
 import indexing
 

@@ -1,27 +1,27 @@
 """
 
-    Retrofit re-review dates to Archetypes schema.
+    Retrofit revisit dates to Archetypes schema.
 
 """
 
 
-from zope.component import adapts, getUtility
-from zope.interface import implements
-
-from Products.Archetypes.public import BooleanWidget
-from Products.ATContentTypes.interface import IATDocument
-from Products.Archetypes import public as atapi
-from Products.Archetypes.interfaces import IBaseContent
-
 from archetypes.schemaextender.field import ExtensionField
-from archetypes.schemaextender.interfaces import ISchemaExtender, IOrderableSchemaExtender, IBrowserLayerAwareExtender
+from archetypes.schemaextender.interfaces import IOrderableSchemaExtender, IBrowserLayerAwareExtender
+
+from DateTime import DateTime
 
 from plone.registry.interfaces import IRegistry
 
-from pretaweb.rereview.interfaces import IAddOnInstalled, IRereviewSettings
+from pretaweb.revisit import revisitMessageFactory as _
+from pretaweb.revisit.interfaces import IAddOnInstalled, IRevisitSettings
+
+from zope.component import adapts, getUtility
+from zope.interface import implements
+
+from Products.Archetypes import public as atapi
+from Products.Archetypes.interfaces import IBaseContent
 
 
-from datetime import datetime, timedelta
 
 class ExtensionDateField(ExtensionField, atapi.DateTimeField):
     """ Retrofitted date field """
@@ -32,9 +32,9 @@ class RevisitDefault(object):
     def __init__ (self, context):
         self.context = context
         registry = getUtility(IRegistry)
-        settings = registry.forInterface (IRereviewSettings)
+        settings = registry.forInterface (IRevisitSettings)
 
-        self.defaultRereviewDaysWait = settings.defaultRereviewDaysWait
+        self.defaultRevisitDaysWait = settings.defaultRevisitDaysWait
         self.defaultApplyToContent = settings.defaultApplyToContent
         
 
@@ -43,13 +43,11 @@ class RevisitDefault(object):
         if self.defaultApplyToContent:
             tInfo = self.context.getTypeInfo()
             if tInfo.getId() in self.defaultApplyToContent:
-                reReviewDate = datetime.now() + timedelta(days=self.defaultRereviewDaysWait)
-                return reReviewDate.date().isoformat()
+                revisitDate = DateTime() + self.defaultRevisitDaysWait
+                return revisitDate.Date()
         return None
 
 
-
-    
 
 class RevisitExtender(object):
     """ Include revisit date on all objects. 
@@ -70,8 +68,8 @@ class RevisitExtender(object):
         ExtensionDateField("revisitDate",
             schemata="dates",
             widget = atapi.CalendarWidget(
-                label="Review Date",
-                description="When this date is reached, the content will be visible in the review task list",            
+                label=_(u"Revisit Date"),
+                description=_(u"When this date is reached, the content will be visible in the revisit task list"),            
                 show_hm=False,
             ),
         )

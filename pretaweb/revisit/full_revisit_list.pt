@@ -1,15 +1,17 @@
-<dl class="portlet portletRereviewPortlet"
-    i18n:domain="pretaweb.rereview">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
 
-    <dt class="portletHeader">
-        <span class="portletTopLeft"></span>
-        <span>
-           Review Task List
-        </span>
-        <span class="portletTopRight"></span>
-    </dt>
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
 
-    <tal:items tal:repeat="o view/review_items">
+<body>
+  <metal:main fill-slot="main">
+    <tal:items tal:repeat="o view/revisit_items">
         <dd class="portletItem"
             tal:define="oddrow repeat/o/odd"
             tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
@@ -56,13 +58,6 @@
         </dd>
     </tal:items>
 
-
-    <dd class="portletFooter">
-        <span class="portletBottomLeft"></span>
-        <span>
-           
-        </span>
-        <span class="portletBottomRight"></span>
-    </dd>
-
-</dl>
+  </metal:main>
+</body>
+</html>

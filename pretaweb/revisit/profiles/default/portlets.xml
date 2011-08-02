@@ -14,9 +14,9 @@
              http://dev.plone.org/plone/ticket/9090) for more information on 
         internationalization with portlets or in plone in general -->
    <portlet
-     addview="pretaweb.rereview.portlets.RereviewPortlet"
-     title="Rereview portlet"
-     description="Show expired rereview dates"
+     addview="pretaweb.revisit.portlets.RevisitPortlet"
+     title="Revisit portlet"
+     description="Show expired revisit dates"
      i18n:attributes="title; description"
    />
 

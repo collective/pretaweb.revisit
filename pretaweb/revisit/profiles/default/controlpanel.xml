@@ -5,12 +5,12 @@
     purge="False">
     
     <configlet
-        title="Rereview"
-        action_id="pretaweb.rereview"
-        appId="pretaweb.rereview" 
+        title="Revisit"
+        action_id="pretaweb.revisit"
+        appId="pretaweb.revisit" 
         category="Products"
         condition_expr=""
-        url_expr="string:${portal_url}/@@rereview-settings"
+        url_expr="string:${portal_url}/@@revisit-settings"
         visible="True" >
             <permission>Manage portal</permission>
     </configlet>

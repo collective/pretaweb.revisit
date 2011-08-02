@@ -1,0 +1,72 @@
+
+<dl class="portlet portletRevisitPortlet"
+    i18n:domain="pretaweb.revisit">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span i18n:translate="heading_revisit_tasklist_portlet">
+           Revisit Task List
+        </span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <tal:items tal:repeat="o view/revisit_items">
+        <dd class="portletItem"
+            tal:define="oddrow repeat/o/odd"
+            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+            	
+	    <table>
+	    	<tbody>
+	    		<tr>
+	    			<td>
+			            <a href="#"
+			               tal:attributes="href string:${o/path}/view;
+			                               title o/description;
+			                               class string:visualIconPadding tile">
+			                <img tal:replace="structure o/icon" />
+			                <span tal:replace="o/title">
+			                    Title
+			                </span>
+				    </a>	    				
+	    			</td>
+
+
+	    		</tr>
+                        <tr>
+                                <td>
+                                    <span tal:replace="o/creator">Jim Smith</span>                                        
+                                </td>                           			
+                        	
+                        </tr>
+			
+			<tr>
+                                <td>
+                                    <span tal:replace="o/contributors">Jim Smith, Jane Doe</span>                                        
+                                </td>				
+			</tr>
+                                
+                        <tr>
+                                <td>
+                                    <span tal:replace="o/mod_date"> May 5</span>                                        
+                                </td>                           
+                        </tr>
+			
+	    	</tbody>
+	    </table>
+
+        </dd>
+    </tal:items>
+
+
+
+    <dd class="portletFooter">
+        <a class="title" href="#" tal:attributes="href view/full_revisit_link" i18n:translate="link_full_revisit_list">Full revisit list...</a>
+        <span class="portletBottomLeft"></span>
+        <span>
+           
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>
+

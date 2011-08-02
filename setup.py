@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '0.02'
 
-setup(name='pretaweb.rereview',
+setup(name='pretaweb.revisit',
       version=version,
       description="",
       long_description=open("README.txt").read() + "\n" +
@@ -15,8 +15,8 @@ setup(name='pretaweb.rereview',
         "Programming Language :: Python",
         ],
       keywords='',
-      author='',
-      author_email='',
+      author='Dylan Jay',
+      author_email='software@pretaweb.com',
       url='http://svn.plone.org/svn/collective/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),

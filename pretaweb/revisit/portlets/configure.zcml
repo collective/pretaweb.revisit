@@ -1,7 +1,7 @@
 <configure 
     xmlns="http://namespaces.zope.org/zope"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="pretaweb.rereview">
+    i18n_domain="pretaweb.revisit">
   <!-- Ensure Plone's portlets ZCML has already been processed; without
        this, we may get a permission lookup error
   -->
@@ -9,14 +9,14 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <plone:portlet
-      name="pretaweb.rereview.portlets.RereviewPortlet"
-      interface=".rereviewportlet.IRereviewPortlet"
-      assignment=".rereviewportlet.Assignment"
-      view_permission="zope2.View"
+      name="pretaweb.revisit.portlets.RevisitPortlet"
+      interface=".revisitportlet.IRevisitPortlet"
+      assignment=".revisitportlet.Assignment"
+      view_permission="zope2.ManageProperties"
       edit_permission="cmf.ManagePortal"
-      renderer=".rereviewportlet.Renderer"
-      addview=".rereviewportlet.AddForm"
-      editview=".rereviewportlet.EditForm"
+      renderer=".revisitportlet.Renderer"
+      addview=".revisitportlet.AddForm"
+      editview=".revisitportlet.EditForm"
       />
 
 </configure>
