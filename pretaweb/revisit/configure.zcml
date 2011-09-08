@@ -35,13 +35,14 @@
   <configure zcml:condition="installed plone.indexer">
   	<adapter name="revisit_date" factory=".indexing.index_revisit" />
   </configure>
-
+<!--
     <browser:page 
         name="revisit-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".browser.RevisitSettingsControlPanel"
         permission="cmf.ManagePortal"
         />
+-->
 
   <browser:page
        name="full_revisit_list"

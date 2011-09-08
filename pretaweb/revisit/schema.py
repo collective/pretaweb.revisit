@@ -10,10 +10,11 @@ from archetypes.schemaextender.interfaces import IOrderableSchemaExtender, IBrow
 
 from DateTime import DateTime
 
-from plone.registry.interfaces import IRegistry
+# reimplemented with site-properties
+#from plone.registry.interfaces import IRegistry
 
 from pretaweb.revisit import revisitMessageFactory as _
-from pretaweb.revisit.interfaces import IAddOnInstalled, IRevisitSettings
+from pretaweb.revisit.interfaces import IAddOnInstalled #, IRevisitSettings
 
 from zope.component import adapts, getUtility
 from zope.interface import implements
@@ -31,11 +32,12 @@ class RevisitDefault(object):
 
     def __init__ (self, context):
         self.context = context
-        registry = getUtility(IRegistry)
-        settings = registry.forInterface (IRevisitSettings)
+        
+        #registry = getUtility(IRegistry)
+        #settings = registry.forInterface (IRevisitSettings)
 
-        self.defaultRevisitDaysWait = settings.defaultRevisitDaysWait
-        self.defaultApplyToContent = settings.defaultApplyToContent
+        self.defaultRevisitDaysWait = 90 # settings.defaultRevisitDaysWait
+        self.defaultApplyToContent =  "Document" # settings.defaultApplyToContent
         
 
     def __call__ (self):

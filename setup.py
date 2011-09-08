@@ -26,8 +26,6 @@ setup(name='pretaweb.revisit',
       install_requires=[
           'setuptools',
           'archetypes.schemaextender',
-          'plone.registry',
-          'plone.app.registry'
 
           # -*- Extra requirements: -*-
       ],

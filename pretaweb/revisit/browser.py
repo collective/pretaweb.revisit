@@ -1,19 +1,23 @@
 
+from zope.publisher.browser import BrowserView
+
+""" # Removed in order to replace with a site properties version
+
 from plone.app.registry.browser.controlpanel import RegistryEditForm, ControlPanelFormWrapper
 
 from pretaweb.revisit import revisitMessageFactory as _
 from pretaweb.revisit.interfaces import IRevisitSettings
 
-from zope.publisher.browser import BrowserView
-
 try:
     # only in z3c.form 2.0
     from z3c.form.browser.textlines import TextLinesFieldWidget
-    from z3c.form.browser.text import TextFieldWidget
 except ImportError:
     from plone.z3cform.textlines import TextLinesFieldWidget
-    from plone.z3cform.text import TextFieldWidget
 
+try:
+    from z3c.form.browser.text import TextFieldWidget
+except ImportError:
+    from plone.z3cform.text import TextFieldWidget
 
 from utils import expired_revisit_content_data
 
@@ -30,6 +34,7 @@ class RevisitSettingsEditForm (RegistryEditForm):
         
     
     def updateWidgets(self):
+        import pdb;pdb.set_trace()
         super(RevisitSettingsEditForm, self).updateWidgets()
         self.widgets['defaultApplyToContent'].rows = 4
         self.widgets['defaultApplyToContent'].style = u'width: 30%;'
@@ -38,7 +43,7 @@ class RevisitSettingsEditForm (RegistryEditForm):
 
 class RevisitSettingsControlPanel(ControlPanelFormWrapper):
     form = RevisitSettingsEditForm
-
+"""
 
 class FullRevisitListView (BrowserView):
 

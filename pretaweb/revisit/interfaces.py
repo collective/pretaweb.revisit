@@ -17,7 +17,7 @@ class IAddOnInstalled(zope.interface.Interface):
     only when the add-on installer has been run.
     """
 
-
+""" # removed to be implemented in site properties
 class IRevisitSettings (zope.interface.Interface):
 
     defaultRevisitDaysWait = schema.Int(
@@ -33,4 +33,4 @@ class IRevisitSettings (zope.interface.Interface):
             required=False,
             value_type=schema.TextLine(title=u"Content Types"))
 
-    
+  """  
