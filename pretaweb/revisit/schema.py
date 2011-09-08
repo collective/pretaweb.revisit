@@ -48,7 +48,6 @@ class RevisitDefault(object):
         return None
 
 
-
 class RevisitExtender(object):
     """ Include revisit date on all objects. 
     

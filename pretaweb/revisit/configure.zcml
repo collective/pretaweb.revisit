@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:browser="http://namespaces.zope.org/browser"
@@ -29,9 +30,11 @@
        for="*"
        provides="Products.Archetypes.interfaces.IFieldDefaultProvider"
        factory=".schema.RevisitDefault"
-       name="revisitDate" />
+       name="revisitDate" /> 
 
-  <adapter name="revisit_date" factory=".indexing.index_revisit" />
+  <configure zcml:condition="installed plone.indexer">
+  	<adapter name="revisit_date" factory=".indexing.index_revisit" />
+  </configure>
 
     <browser:page 
         name="revisit-settings"
