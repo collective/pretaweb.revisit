@@ -10,11 +10,8 @@ from archetypes.schemaextender.interfaces import IOrderableSchemaExtender, IBrow
 
 from DateTime import DateTime
 
-# reimplemented with site-properties
-#from plone.registry.interfaces import IRegistry
-
 from pretaweb.revisit import revisitMessageFactory as _
-from pretaweb.revisit.interfaces import IAddOnInstalled #, IRevisitSettings
+from pretaweb.revisit.interfaces import IAddOnInstalled 
 
 from zope.component import adapts, getUtility
 from zope.interface import implements
@@ -22,7 +19,7 @@ from zope.interface import implements
 from Products.Archetypes import public as atapi
 from Products.Archetypes.interfaces import IBaseContent
 
-
+from Products.CMFCore.utils import getToolByName
 
 class ExtensionDateField(ExtensionField, atapi.DateTimeField):
     """ Retrofitted date field """
@@ -32,12 +29,12 @@ class RevisitDefault(object):
 
     def __init__ (self, context):
         self.context = context
-        
-        #registry = getUtility(IRegistry)
-        #settings = registry.forInterface (IRevisitSettings)
 
-        self.defaultRevisitDaysWait = 90 # settings.defaultRevisitDaysWait
-        self.defaultApplyToContent =  "Document" # settings.defaultApplyToContent
+        portal = getToolByName (context, "portal_url") .getPortalObject()
+        settings = portal.portal_properties.site_properties
+
+        self.defaultRevisitDaysWait = getattr(settings, "revisit_default_days_wait", 90)
+        self.defaultApplyToContent =  getattr(settings, "revisit_apply_to_content", None)
         
 
     def __call__ (self):
