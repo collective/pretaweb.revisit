@@ -1,6 +1,8 @@
 
 from zope.publisher.browser import BrowserView
 
+from utils import expired_revisit_content_data
+
 class FullRevisitListView (BrowserView):
 
     def revisit_items (self):
